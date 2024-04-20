@@ -1,15 +1,35 @@
 'use strict';
 
+function createGame () {
+  const sicretNumber = Math.floor(Math.random() * 100) + 1;
+  console.log(sicretNumber);
 
+  function playGame () {
+    const userGuess = prompt('Guess the number from 1 to 100');
 
-function createGernrateUrl(url){
-    return function(imageName){
-      return url + imageName;
+    if (userGuess === null) {
+      alert('Game over!');
+      return;
     }
-};
+    const guess = parseInt(userGuess, 10);
 
-let urlIcons = createGernrateUrl('https://maydomain.ru/icons/');
-let urlImages = createGernrateUrl('https://maydomain.ru/images/');
+    if (isNaN(guess)) {
+      alert(' Enter the number!');
+    } else if (guess < sicretNumber) {
+      alert('The hidden number is greater');
+        playGame();
+    } else if (guess > sicretNumber) {
+      alert('The hidden number is less');
+        playGame();
+    } else {
+      alert('Congratulations, you guessed it!!!')
+    }
 
-console.log(urlIcons('colck.svg.super/'));
-console.log(urlIcons('man.png//create//'));
+  }
+  return playGame;
+}
+
+
+ const game = createGame();
+ game();
+
